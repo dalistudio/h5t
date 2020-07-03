@@ -126,7 +126,29 @@ export default {
 	ready () {
 	},
 	methods: {
-		
+		//evtIptFocus () {
+		//	$('.header-search').addClass('search-active')
+		//	$('.search-result').show()
+		//	this.hotStatus = false
+		//},
+		//evtIptBlur () {
+		//	$('.header-search').removeClass('search-active')
+		//	$('.search-result').hide()
+		//	this.hotStatus = true
+		//},
+		evtHeaderEnter (menuType) {
+			if (menuType) {
+				this.currentPhones = this[menuType]
+			}
+			this.headerStatus = true
+			clearTimeout(this.tids)
+		},
+		evtHeaderLeave () {
+			let self = this
+			this.tids = setTimeout(function () {
+				self.headerStatus = false
+			}, 300)
+		}
 	},
 	components: {
 	}
